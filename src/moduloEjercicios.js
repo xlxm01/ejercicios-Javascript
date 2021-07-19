@@ -1,13 +1,24 @@
 import basededatos from './basededatos.js';
 
-
+const pelis = basededatos.peliculas;
+const directores = basededatos.directores;
+const paises = basededatos.paises;
+const generos = basededatos.generos;
+const criticos = basededatos.criticos;
+const calif = basededatos.calificaciones;
 /**
 * Devuelve el promedio de anios de estreno de todas las peliculas de la base de datos.
 */
 export const promedioAnioEstreno = () => {
     // Ejemplo de como accedo a datos dentro de la base de datos
     // console.log(basededatos.peliculas);
-    return [];
+    let promedio = pelis.reduce((acum, item) => {
+        acum += item.anio;
+        return acum
+    }, 0);
+    promedio = promedio / pelis.length;
+    //console.log(promedio);    
+    return [promedio];
 };
 
 /**
@@ -16,14 +27,20 @@ export const promedioAnioEstreno = () => {
 * @param {number} promedio
   */
 export const pelicuasConCriticaPromedioMayorA = (promedio) => {
+
     return [];
 };
+
+
+/**promedio por pelicula */
+//const promxpeli = calif.map
 
 /**
 * Devuelve la lista de peliculas de un director
 * @param {string} nombreDirector
 */
 export const peliculasDeUnDirector = (nombreDirector) => {
+    
     return [];
 };
 
