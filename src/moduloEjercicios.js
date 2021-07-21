@@ -27,7 +27,31 @@ export const promedioAnioEstreno = () => {
 * @param {number} promedio
   */
 export const pelicuasConCriticaPromedioMayorA = (promedio) => {
-
+    //Crear un array con id de pelicula donde dentro agrupa las calificaciones de la misma
+    const grupoPeliculas = calif.reduce((grupoPelis,item)=>{
+        const idPeli = item.pelicula
+        //console.log(idPeli)
+        if (grupoPelis[idPeli] == null) grupoPelis[idPeli]=[]
+        grupoPelis[idPeli].push(item)
+        return grupoPelis
+    }, {})
+    //console.log (grupoPeliculas);
+    // Arma array con peli y putuacion promedio
+    const lista=[];
+    for (var i in grupoPeliculas){
+        //calcula promedio de una pelicula
+        const rta = grupoPeliculas[i].reduce((promedioXPeli, item)=> {
+            //console.log(item)
+               return promedioXPeli += item.puntuacion / grupoPeliculas[1].length
+        },0)
+        lista.push({idPelicula: i, puntuacionPromedio: rta})
+    }
+    console.log(lista)
+    //aplicar filtro para saber cuales pelis tienen puntuacionPromedio mayor a promedio
+    const pelisSeleccionadas = lista.filter((unObj)=>{
+        return unObj.puntuacionPromedio > promedio
+    });
+    console.log(pelisSeleccionadas)
     return [];
 };
 
